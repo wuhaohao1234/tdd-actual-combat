@@ -1,0 +1,28 @@
+{
+  "name": "tdd-actual-combat",
+  "version": "1.0.0",
+  "description": "tdd实战训练营",
+  "main": "lib/src/index.js",
+  "typings": "lib/src/index.d.ts",
+  "scripts": {
+    "compile": "npx tsc",
+    "test": "npx jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wuhaohao1234/tdd-actual-combat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wuhaohao1234/tdd-actual-combat/issues"
+  },
+  "homepage": "https://github.com/wuhaohao1234/tdd-actual-combat#readme",
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3"
+  }
+}
