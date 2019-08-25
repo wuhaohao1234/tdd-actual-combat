@@ -150,3 +150,110 @@ describe("This is a simple test", () => {
     });
 });
 ```
+
+## example1
+
+项目文件:
+
+src/gameNumber.ts
+
+```
+/** 
+ * @param remainder 判断是否为倍数
+ * @description 输入目标值resultNum与倍数，判断是否是倍数,返回值为booleam
+*/
+export function remainder(resultNum: number, multiple: number): boolean {
+    return resultNum % multiple === 0
+}
+/**
+ * @param getNum 判断数字
+ * @description 输入目标值,如果是3的倍数，则返回Fizz,是5则返回Buzz,是3或者5的倍数则返回FizzBuzz 
+ * */
+export function getNum(num: number) {
+    if (remainder(num, 3) && remainder(num, 5)) {
+        return 'FizzBuzz'
+    }
+    if (remainder(num, 3)) {
+        return 'Fizz'
+    }
+    if (remainder(num, 5)) {
+        return 'Buzz'
+    }
+    return num
+}
+
+/**
+ * @param outNumber 输出数字
+ * @description 输入相应的目标数目result，输出长度为result的数组
+ * */
+export function outNumber(result: number): any[] {
+    let arr: any[] = []
+    for(let i = 1;i < result + 1; i ++) {
+        arr.push(getNum(i))
+    }
+    return arr
+}
+```
+
+test
+
+```
+describe('判断该数是否是传入值的倍数', () => {
+    test('是倍数返回true', () => {
+        expect(remainder(3,1)).toBe(true)
+    })
+    test('不是倍数返回false', () => {
+        expect(remainder(2,10)).toBe(false)
+    })
+})
+
+describe('数字测试', () => {
+    test('输入1，返回1', () => {
+        expect(getNum(1)).toBe(1)
+    })
+    test('输入3的倍数,返回Fizz', () => {
+        expect(getNum(3)).toEqual('Fizz')
+    })
+    test('输入5的倍数，返回Buzz', () => {
+        expect(getNum(5)).toEqual('Buzz')
+    })
+    test('输入3与5的倍数，返回FizzBuzz', () => {
+        expect(getNum(3 * 5)).toEqual('FizzBuzz')
+    })
+})
+
+describe('数字测试游戏', () => {
+    test('输出长度为100的数组', () => {
+        expect(outNumber(100).length).toBe(100)
+    })
+    test('数组第一项为1', () => {
+        expect(outNumber(100)[0]).toBe(1)
+    })
+    test('数组第3项为Fizz', () => {
+        expect(outNumber(100)[2]).toEqual('Fizz')
+    })
+    test('数组第5项为Buzz', () => {
+        expect(outNumber(100)[4]).toEqual('Buzz')
+    })
+    test('数组第15项为FizzBuzz', () => {
+        expect(outNumber(100)[14]).toEqual('FizzBuzz')
+    })
+    test('数组元素全部测试', () => {
+        const arr = outNumber(100)
+        for(let i = 0;i < arr.length;i ++) {
+            if(((i + 1) % 3 === 0) && ((i + 1) % 5 === 0)) {
+                expect(arr[i]).toEqual('FizzBuzz')
+            }
+            if(((i + 1) % 3 === 0) && ((i + 1) % 5 !== 0)) {
+                expect(arr[i]).toEqual('Fizz')
+            }
+            if(((i + 1) % 3 !== 0) && ((i + 1) % 5 === 0)) {
+                expect(arr[i]).toEqual('Buzz')
+            }
+            if(((i + 1) % 3 !== 0) && ((i + 1) % 5 !== 0)) {
+                expect(arr[i]).toBe(i + 1)
+            }
+        }
+    })
+})
+```
